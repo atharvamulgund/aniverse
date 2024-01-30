@@ -24,12 +24,19 @@ const CardSection = () => {
     }
 
     const setName = (animeName: string) => {
-        setCardData(cardData?.filter(item => item?.title.toLowerCase() === animeName.toLowerCase()))
+        if(animeName!=='' && animeName!==null && animeName!==undefined){
+            setCardData(cardData?.filter(item => item?.title.toLowerCase() === animeName.toLowerCase()))
+        }else{
+            //setUrl(`https://api.jikan.moe/v4/anime?page=${page}&limit=12`)   
+            fetchData() 
+            
+        }
+        
     }
 
     const handleChange = (event, value) => {
         setPage(value)
-        setUrl((`https://api.jikan.moe/v4/anime?page=${page}&limit=12`))
+        setUrl(`https://api.jikan.moe/v4/anime?page=${page}&limit=12`)
     }
 
     useEffect(() => {
@@ -54,9 +61,11 @@ const CardSection = () => {
                 options={[...autoCompleteData]}
                 sx={{ width: 300 }}
 
-                onChange={(newValue) => {
+                onChange={(event,newValue) => {
                     setName(newValue)
                 }}
+
+                
                 renderInput={(params) => <TextField {...params} label="Search Any Anime" variant="filled" fullWidth />}
             />
 
