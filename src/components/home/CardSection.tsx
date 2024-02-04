@@ -1,4 +1,4 @@
-import { Autocomplete, Pagination, TextField } from "@mui/material";
+import { Autocomplete, Chip, Pagination, Rating, TextField } from "@mui/material";
 import { Box, Container } from "@mui/system";
 import { useEffect, useState } from "react";
 import Card from '@mui/material/Card';
@@ -6,42 +6,45 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
+import { Link } from "react-router-dom";
 
 const CardSection = () => {
     const [page, setPage] = useState(1)
     const [pageCount, setPageCount] = useState()
-    const [url, setUrl] = useState(`https://api.jikan.moe/v4/anime?page=${page}&limit=12`)
     const [autoCompleteData, setAutoCompleteData] = useState([])
     const [cardData, setCardData] = useState([])
-    const fetchData = async () => {
-        const res = await fetch(url);
+    const fetchData = async (pageNumber?:number,q?:string) => {
+        let page = pageNumber? pageNumber : 1
+        let query = q ? q :''
+        const res = await fetch(`https://api.jikan.moe/v4/anime?page=${page}&limit=12&q=${query}`);
         const data = await res.json();
-        setAutoCompleteData(data?.data?.map(item => item.title));
+        // setAutoCompleteData(data?.data?.map(item => item.title));
         setCardData(data?.data?.map(item => item));
         setPageCount(data?.pagination?.last_visible_page)
-        console.log(pageCount);
-        
     }
 
     const setName = (animeName: string) => {
         if(animeName!=='' && animeName!==null && animeName!==undefined){
             setCardData(cardData?.filter(item => item?.title.toLowerCase() === animeName.toLowerCase()))
-        }else{
-            //setUrl(`https://api.jikan.moe/v4/anime?page=${page}&limit=12`)   
+        }else{ 
             fetchData() 
-            
         }
-        
     }
 
-    const handleChange = (event, value) => {
+    const autoComplete = async () =>{
+        const res = await fetch(`https://api.jikan.moe/v4/anime?page=${page}&limit=`);
+        const data = await res.json();
+        setAutoCompleteData(data?.data?.map(item => item.title));
+    }
+
+    const handleChange = (event, value) => {    
         setPage(value)
-        setUrl(`https://api.jikan.moe/v4/anime?page=${page}&limit=12`)
+        fetchData(value)
     }
 
     useEffect(() => {
         fetchData()
-    }, [url])
+    }, [])
 
 
     return (
@@ -58,14 +61,16 @@ const CardSection = () => {
             <Autocomplete
                 disablePortal
                 id="combo-box-demo"
+                onOpen={autoComplete}	
                 options={[...autoCompleteData]}
                 sx={{ width: 300 }}
-
                 onChange={(event,newValue) => {
                     setName(newValue)
                 }}
-
-                
+                onInputChange={(event,value)=>{
+                    var query = value
+                    fetchData(page,query)
+                }}
                 renderInput={(params) => <TextField {...params} label="Search Any Anime" variant="filled" fullWidth />}
             />
 
@@ -78,9 +83,11 @@ const CardSection = () => {
                 gap: '1rem'
             }}>
                 {cardData?.map((item) => {
+                    const url = `/aniverse/id?id=${item?.mal_id}`
                     return (
-                        <Card sx={{ minWidth: 250, maxWidth: 250,maxHeight:360 }} key={item?.rank}>
-                            <CardActionArea>
+                        <Card sx={{ minWidth: 275, maxWidth: 275,maxHeight:400,padding:'0.5rem' }}  key={item?.rank}>
+                          <Link to={url}>
+                          <CardActionArea>
                                 <CardMedia
                                     component="img"
                                     height="240"
@@ -91,16 +98,25 @@ const CardSection = () => {
                                     alt="green iguana"
                                 />
                                 <CardContent sx={{
+                                    display:'flex',
+                                    justifyContent:'space-evenly',
+                                    alignItems:'center',
+                                    flexDirection:'column',
+                                    gap:'0.5rem',
                                     textAlign: 'center',
                                 }}>
                                     <Typography gutterBottom variant="h6" >
                                         {item?.title}
                                     </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        {/* {item?.background ?} */}
-                                    </Typography>
+                                    <Box sx={{display:'flex',justifyContent:'space-evenly',alignItems:'center',gap:'0.5rem',flexWrap:'wrap'}}>
+                                    {item?.genres?.map((g, index) => (
+                                        <Chip key={index} size="small" label={g.name} color='info'  />
+                                    ))}
+                                    </Box>
+                                    <Rating name="read-only" value={item?.score} precision={0.5} readOnly max={10}/>
                                 </CardContent>
                             </CardActionArea>
+                          </Link>
                         </Card>
                     )
                 })}
@@ -113,7 +129,7 @@ const CardSection = () => {
                 gap: '1rem'
             }}>
                     <Typography>Page: {page}</Typography>
-                    <Pagination count={pageCount} page={page} onChange={handleChange} />
+                    <Pagination count={pageCount} page={page} onChange={handleChange} size="small" />
                 </Box>
             </Box>
 
