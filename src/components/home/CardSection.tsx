@@ -27,7 +27,7 @@ const CardSection = () => {
         setPageCount(data?.pagination?.last_visible_page)
         pageNumber || q ? setIsLoading(false) : setIsLoading(false)
     }
-    
+
 
     const setName = (animeName: string) => {
         if (animeName !== '' && animeName !== null && animeName !== undefined) {
@@ -68,17 +68,32 @@ const CardSection = () => {
             {!isLoading ?
                 (
                     <>
-                        <Autocomplete
-                            disablePortal
-                            id="combo-box-demo"
-                            onOpen={autoComplete}
-                            options={[...autoCompleteData]}
-                            sx={{ width: 300 }}
-                            onChange={(event, newValue) => {
-                                setName(newValue)
-                            }}
-                            renderInput={(params) => <TextField {...params} label="Search and select any Anime" variant="filled" fullWidth />}
-                        />
+                        <Box sx={{
+                            display: 'flex',
+                            justifyContent: { lg: 'space-around', sm: 'center', xs: 'center' },
+                            alignItems: 'center',
+                            width: '100%',
+                            flexWrap: "wrap",
+                            gap:'1rem'
+                        }}>
+                            <Typography color='#0f0' fontWeight="bold" sx={{
+                                fontSize: { lg: '2.25rem', sm: '2.25rem', xs: '1.75rem' },
+                                textAlign:{xs:'center'}
+                            }} >
+                                View Top Anime
+                            </Typography>
+                            <Autocomplete
+                                disablePortal
+                                id="combo-box-demo"
+                                onOpen={autoComplete}
+                                options={[...autoCompleteData]}
+                                sx={{ width: 300 }}
+                                onChange={(event, newValue) => {
+                                    setName(newValue)
+                                }}
+                                renderInput={(params) => <TextField {...params} label="Search and select any Anime" variant="filled" fullWidth />}
+                            />
+                        </Box>
 
                         <Box sx={{
                             display: 'flex',
@@ -140,7 +155,7 @@ const CardSection = () => {
                         </Box>
                     </>
                 ) : (
-                 <Loader/>
+                    <Loader />
                 )}
 
         </Container>
