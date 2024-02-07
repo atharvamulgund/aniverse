@@ -6,26 +6,37 @@ const Hero = () => {
   return (
     <Container sx={{
         display:'flex',
-        justifyContent:{lg:'space-around',sm:'center',xs:'center'},
+        justifyContent:'center',
         alignItems: 'center',
         width:"100%",
-        height:{lg:'100vh',md:'100%',xs:'100%'},
+        height:{lg:'100vh',md:'100vh',xs:'100vh'},
         flexDirection:{lg:'row',md:'row',xs:'column-reverse'}
+        
     }}
+    className='herosection'
     maxWidth='false'
     >
         {/* Content Box */}
-        <Box sx={{}}>
-            <Typography variant='h4' color='#0f0'>
+        <Box sx={{
+            display:'flex',
+            justifyContent:'center',
+            alignItems: 'center',
+            width:"100%",
+            color:'#fff',
+            flexDirection:'column'
+        }}>
+            <Typography color='#0f0' fontWeight="bold" sx={{
+               fontSize:{lg:'3.25rem',sm:'3.25rem',xs:'1.5rem' }
+            }}>
                 Welcome to Aniverse!
             </Typography>
-           <Typography variant='body1' fontSize='1.25rem'>
+           <Typography variant='body1'  textAlign='center' sx={{
+            width:{lg:'60%',md:'100%',xs:'100%'},
+            fontSize:{lg:'1.25rem',md:'1.25rem',xs:'1rem' }
+            }}>
            Aniverse is your ultimate destination for all things anime! Immerse yourself in a world of captivating narratives, vibrant characters, and breathtaking animation. Explore comprehensive details on your favorite anime series, from plot summaries to character profiles. Elevate your anime experience with Aniverse, your go-to platform for all anime enthusiasts!
            </Typography>
         </Box>
-        <Box>
-            <img src={HeroBG} alt="aniverse" width="100%" />
-         </Box>
     </Container>
   )
 }

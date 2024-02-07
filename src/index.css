@@ -1,7 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
 body{
     background-color: rgb(255, 255, 255);
 }
 a{
     text-decoration: none;
     color: inherit;
+}
+.herosection{
+    background: linear-gradient(90deg, #000000c1 100%, #000000b9 100%), url(./assets/herobanner.jpg) no-repeat center center / cover !important;
+}
+.link{
+    text-decoration: underline;
 }
