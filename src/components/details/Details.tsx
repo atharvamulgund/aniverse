@@ -4,7 +4,8 @@ import { Box, Chip, Container, Rating, Typography } from '@mui/material'
 const Details = ({animeData}) => {
   
   return (
-    <Container sx={{
+   <>
+     <Container sx={{
         display: "flex",
         flexDirection:{lg:'row',md:'row',xs:'column'},
         justifyContent: { lg: 'space-around', sm: 'center', xs: 'center' },
@@ -40,7 +41,15 @@ const Details = ({animeData}) => {
             <Typography variant="body1">{animeData?.synopsis}</Typography>
 
         </Box>
+  
     </Container>
+          <Typography color='#0f0' fontWeight="bold" sx={{
+            fontSize: { lg: '2.25rem', sm: '2.25rem', xs: '1.75rem' },
+            textAlign:{xs:'center'}
+        }} >
+            Anime Latest Episodes
+        </Typography>
+   </>
   )
 }
 

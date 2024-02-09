@@ -80,7 +80,7 @@ const CardSection = () => {
                                 fontSize: { lg: '2.25rem', sm: '2.25rem', xs: '1.75rem' },
                                 textAlign:{xs:'center'}
                             }} >
-                                View Top Anime
+                                Anime List
                             </Typography>
                             <Autocomplete
                                 disablePortal
