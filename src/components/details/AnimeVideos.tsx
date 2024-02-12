@@ -1,8 +1,8 @@
-import { Card, CardContent, CardMedia, Container,CardActionArea,Typography,Box } from '@mui/material';
+import { Card, CardContent, CardMedia, Container,CardActionArea,Typography} from '@mui/material';
 import noImage from "../../assets/No-Image-Placeholder.svg"
 
-const AnimeVideos = ({animeVideos}) => {
-    function handleError(image){
+const AnimeVideos = (props:any) => {
+    function handleError(image:any){
        return image!=null? image:noImage;
     }
   return (
@@ -17,7 +17,7 @@ const AnimeVideos = ({animeVideos}) => {
             gap: '2rem',
             mt: "3rem"
         }}>
-        {animeVideos?.episodes?.slice(0,3)?.map((item) => {
+        {props?.animeVideos?.episodes?.slice(0,3)?.map((item:any) => {
                                 return (
                                     <Card sx={{ minWidth: 275, maxWidth: 275, maxHeight: 400, padding: '0.5rem' }} key={item?.mal_id}>
                                             <CardActionArea>

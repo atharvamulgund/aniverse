@@ -1,4 +1,4 @@
-import { Autocomplete, Chip, CircularProgress, Pagination, Rating, TextField } from "@mui/material";
+import { Autocomplete, Chip, Pagination, Rating, TextField } from "@mui/material";
 import { Box, Container } from "@mui/system";
 import { useEffect, useState } from "react";
 import Card from '@mui/material/Card';
@@ -8,7 +8,6 @@ import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import { Link } from "react-router-dom";
 import Loader from "../common/Loader";
-import { debounce } from 'lodash';
 
 const CardSection = () => {
     const [page, setPage] = useState(1)
@@ -23,7 +22,7 @@ const CardSection = () => {
         const res = await fetch(`https://api.jikan.moe/v4/anime?page=${page}&limit=12&q=${query}`);
         const data = await res.json();
         // setAutoCompleteData(data?.data?.map(item => item.title));
-        setCardData(data?.data?.map(item => item));
+        setCardData(data?.data?.map((item:any)=> item));
         setPageCount(data?.pagination?.last_visible_page)
         pageNumber || q ? setIsLoading(false) : setIsLoading(false)
     }
@@ -31,7 +30,7 @@ const CardSection = () => {
 
     const setName = (animeName: string) => {
         if (animeName !== '' && animeName !== null && animeName !== undefined) {
-            setCardData(cardData?.filter(item => item?.title.toLowerCase() === animeName.toLowerCase()))
+            setCardData(cardData?.filter((item:any) => item?.title.toLowerCase() === animeName.toLowerCase()))
         } else {
             fetchData()
         }
@@ -40,10 +39,10 @@ const CardSection = () => {
     const autoComplete = async () => {
         const res = await fetch(`https://api.jikan.moe/v4/anime?page=${page}&limit=`);
         const data = await res.json();
-        setAutoCompleteData(data?.data?.map(item => item.title));
+        setAutoCompleteData(data?.data?.map((item:any) => item.title));
     }
 
-    const handleChange = (event, value) => {
+    const handleChange = (_event:any, value:any) => {
         setPage(value)
         fetchData(value)
     }
@@ -88,7 +87,7 @@ const CardSection = () => {
                                 onOpen={autoComplete}
                                 options={[...autoCompleteData]}
                                 sx={{ width: 300 }}
-                                onChange={(event, newValue) => {
+                                onChange={(_event, newValue:any) => {
                                     setName(newValue)
                                 }}
                                 renderInput={(params) => <TextField {...params} label="Search and select any Anime" variant="filled" fullWidth />}
@@ -103,7 +102,7 @@ const CardSection = () => {
                             flexWrap: "wrap",
                             gap: '1rem'
                         }}>
-                            {cardData?.map((item) => {
+                            {cardData?.map((item:any) => {
                                 const url = `/aniverse/id?id=${item?.mal_id}`
                                 return (
                                     <Card sx={{ minWidth: 275, maxWidth: 275, maxHeight: 400, padding: '0.5rem' }} key={item?.rank}>
@@ -130,7 +129,7 @@ const CardSection = () => {
                                                         {item?.title}
                                                     </Typography>
                                                     <Box sx={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
-                                                        {item?.genres?.map((g, index) => (
+                                                        {item?.genres?.map((g:any, index:any) => (
                                                             <Chip key={index} size="small" label={g.name} color='info' />
                                                         ))}
                                                     </Box>

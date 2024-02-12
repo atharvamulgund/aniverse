@@ -1,8 +1,8 @@
 import { Box, Chip, Container, Rating, Typography } from '@mui/material'
 
 
-const Details = ({animeData}) => {
-  
+const Details = (props:any) => {
+  const animeData = props?.animeData
   return (
    <>
      <Container sx={{
@@ -24,7 +24,7 @@ const Details = ({animeData}) => {
         }}>
             <img src={animeData?.images?.jpg?.image_url} alt={animeData?.title} />
             <div>
-            {animeData?.genres?.map((g, index) => (
+            {animeData?.genres?.map((g:any, index:any) => (
                   <Chip key={index} size="small" label={g.name} color='info' sx={{mx:'4px'}} />
               ))}
             </div>

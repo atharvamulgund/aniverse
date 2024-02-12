@@ -1,6 +1,5 @@
 import { Typography } from '@mui/material'
 import { Box, Container } from '@mui/system'
-import HeroBG from "../../assets/herobanner.jpg"
 
 const Hero = () => {
   return (
@@ -14,7 +13,7 @@ const Hero = () => {
         
     }}
     className='herosection'
-    maxWidth='false'
+    maxWidth='xl'
     >
         {/* Content Box */}
         <Box sx={{

@@ -1,10 +1,6 @@
-
-import Button from '@mui/material/Button';
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
-  Routes,
 } from "react-router-dom";
 import HomeLayout from './pages/HomeLayout.tsx';
 import DetailsLayout from './pages/DetailsLayout.tsx';
