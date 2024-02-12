@@ -96,7 +96,7 @@ const CardSection = () => {
 
                         <Box sx={{
                             display: 'flex',
-                            justifyContent: 'space-between',
+                            justifyContent: { lg: 'space-between', sm: 'center', xs: 'center' },
                             alignItems: 'center',
                             width: '100%',
                             flexWrap: "wrap",
