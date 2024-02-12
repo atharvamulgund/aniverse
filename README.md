@@ -1,5 +1,5 @@
 # Aniverse - Your Ultimate Anime Destination
-![Logo]([https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png](https://github.com/atharvamulgund/aniverse/blob/main/localhost_5173_.png))
+![Aniverse](./localhost_5173_.png)
 Welcome to Aniverse, where the world of anime comes alive! Immerse yourself in captivating narratives, vibrant characters, and breathtaking animation. Aniverse is your go-to platform for all things anime, offering a comprehensive experience for enthusiasts.
 
 ## Features
