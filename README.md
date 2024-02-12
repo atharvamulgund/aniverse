@@ -1,5 +1,5 @@
 # Aniverse - Your Ultimate Anime Destination
-
+![Logo]([https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png](https://github.com/atharvamulgund/aniverse/blob/main/localhost_5173_.png))
 Welcome to Aniverse, where the world of anime comes alive! Immerse yourself in captivating narratives, vibrant characters, and breathtaking animation. Aniverse is your go-to platform for all things anime, offering a comprehensive experience for enthusiasts.
 
 ## Features
@@ -42,12 +42,8 @@ Explore Aniverse
 Open your browser and start exploring the captivating world of anime on Aniverse.
 
 ## Authors
-
-- **Atharva Mulgund**
-  - [Portfolio]([https://github.com/AtharvaMulgund](https://atharvamulgund.web.app/))
-
-- **Aasish Nair**
-  - [Linkedin]([https://github.com/AasishNair](https://www.linkedin.com/in/aashish-nair-4ab401193/))
+  - [@atharvamulgund](https://www.github.com/atharvamulgund)
+  - [@aasishnair](https://github.com/AashishNair01)
 
 ## Contribute
 
